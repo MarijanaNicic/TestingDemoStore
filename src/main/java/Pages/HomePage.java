@@ -18,6 +18,10 @@ public class HomePage {
         clickLink("signin2");
         return new SignUpPage(driver);
     }
+    public LogInPage clickLogIn(){
+        clickLink("login2");
+        return new LogInPage(driver);
+    }
 
 
 }
