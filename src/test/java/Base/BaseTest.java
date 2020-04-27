@@ -1,12 +1,18 @@
 package Base;
 
+
 import Pages.HomePage;
 import com.google.common.io.Files;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -16,8 +22,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import static java.util.concurrent.TimeUnit.SECONDS;
 
-public class BaseTest {
+
+public class BaseTest{
 
     private EventFiringWebDriver driver;
     protected HomePage homePage;
@@ -27,7 +35,8 @@ public class BaseTest {
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "resources/chromedriver.exe");
         driver = new EventFiringWebDriver(new ChromeDriver(getChromeOption()));
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(30, SECONDS);
+
         goHome();
         homePage = new HomePage(driver);
         //setCookie();
@@ -64,5 +73,6 @@ public class BaseTest {
         //options.setHeadless(true);
         return options;
     }
+
 
 }
